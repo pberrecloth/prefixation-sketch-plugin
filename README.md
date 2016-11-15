@@ -17,8 +17,9 @@ For example, "Folder 1 / Folder 2 / Layername" will become "Layername".
 
 ## Screenshots
 
-![Example](screenshots/menu.png?raw=true "Example")
 ![Example](screenshots/prefixManager.png?raw=true "Example")
+
+![Example](screenshots/menu.png?raw=true "Example")
 
 
 ## Keyboard Shortcuts

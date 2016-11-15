@@ -23,6 +23,7 @@ var onRun = function(context) {
 
 function createSelect(msg, items, selectedItemIndex){
   selectedItemIndex = selectedItemIndex || 0
+  var itemsCount = items.length
 
   var accessory = NSComboBox.alloc().initWithFrame(NSMakeRect(0,0,200,25))
   accessory.addItemsWithObjectValues(items)
@@ -30,6 +31,7 @@ function createSelect(msg, items, selectedItemIndex){
 
   var alert = NSAlert.alloc().init()
   alert.setMessageText(msg)
+  alert.setInformativeText(itemsCount + " prefix(es) found in this document")
   alert.addButtonWithTitle('OK')
   alert.addButtonWithTitle('Cancel')
   alert.setAccessoryView(accessory)
