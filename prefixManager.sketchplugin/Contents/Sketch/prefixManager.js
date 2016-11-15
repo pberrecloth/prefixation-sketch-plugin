@@ -2,6 +2,13 @@
 // Replace path prefix
 var onRun = function(context) {
   var doc = context.document
+  selection = context.selection
+  selectionCount = selection.count()
+
+  if (selectionCount <= 0) {
+    doc.showMessage("Select at least one layer.")
+    return
+  }
 
   var options = collatePrefixes(context)
 
@@ -43,23 +50,26 @@ function createSelect(msg, items, selectedItemIndex){
   return [responseCode, value]
 }
 
-// Gather all existing prefixes from doc and spit out a list
+// Look at all layers in doc and spit out a list of prefixes
 function collatePrefixes(context){
   var doc = context.document
-  var page = [doc currentPage];
-  var layers = [page children];
+  var pages = [doc pages];
   var prefixList = []
 
-  // Loop through each layer on the page
-  for (var i=0; i<[layers count]; i++) {
-    var layer = layers[i];
-    // var layerName = layer.name()
-
-    var layerPrefix = layer.name().split("/").slice(0, -1).join("/").trim();
-    if (layerPrefix) {
-      prefixList.push(layerPrefix + " / ");
+  // Loop through pages
+  for (var i=0; i<[pages count]; i++) {
+    var page = pages[i];
+    var layers = [page children];
+    // Loop through layers
+    for (var j=0; j<[layers count]; j++) {
+      var layer = layers[j];
+      var layerPrefix = layer.name().split("/").slice(0, -1).join("/").trim();
+      if (layerPrefix) {
+        prefixList.push(layerPrefix + " / ");
+      }
     }
   }
-  // Return and remove duplicates
+
+  // Removes duplicates and returns list
   return prefixList.reduce(function(a,b){if(a.indexOf(b)<0)a.push(b);return a;},[]);
 }
