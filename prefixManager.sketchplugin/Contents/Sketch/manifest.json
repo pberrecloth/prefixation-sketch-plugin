@@ -1,0 +1,36 @@
+{
+    "name" : "Path Prefix Manager",
+    "identifier" : "com.pathprefixmanager.sketchplugin",
+    "version" : "1.0",
+    "description" : "Manage prefixes",
+    "authorEmail" : "peterberrecloth@gmail.com",
+    "author" : "Peter Berrecloth",
+    "commands" : [
+        {
+            "script" : "prefixManager.js",
+            "handler" : "onRun",
+            "shortcut" : "",
+            "name" : "Path Prefix Manager",
+            "identifier" : "managePrefix"
+        },
+        {
+            "script" : "stripPathPrefixes.js",
+            "handler" : "onRun",
+            "shortcut" : "",
+            "name" : "Remove Path Prefixes",
+            "identifier" : "stripPathPrefixes"
+        }
+    ],
+    "menu": {
+        "isRoot": true,
+        "items": [
+            {
+              "title" : "Prefixation",
+              "items" : [
+                "managePrefix",
+                "stripPathPrefixes"
+              ]
+            }
+        ]
+    }
+}
